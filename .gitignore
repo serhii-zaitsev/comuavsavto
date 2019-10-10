@@ -1,0 +1,7 @@
+*.iml
+*.idea
+
+/src/main/java/pages/AccountPage.java
+/src/main/java/pages/LoginPage.java
+/src/main/java/pages/SearchPage.java
+/src/main/java/pages/LandingPage.java
