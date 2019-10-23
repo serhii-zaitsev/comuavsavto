@@ -20,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.titleContains;
 
 
 public class MyFirstTest extends BaseGUITest {
-
+/*
     @Test
     public void verify_First_Tip_Is_Correctly_Updated_After_Entering_New_Query() {
         LandingPage landingPage = new LandingPage(getDriver());
@@ -63,7 +63,7 @@ public class MyFirstTest extends BaseGUITest {
                 CoreMatchers.containsString("T-shirt"));
     }
 
-/*    @Test
+@Test
     public void verifyDownloadMyOrder() throws Exception {
         // Given
         LoginPage loginPage = new LoginPage(driver);

@@ -1,7 +1,13 @@
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import pages.GooglePage;
 import pages.GoogleSearchPage;
+import pages.LandingPage;
+
+import static org.hamcrest.CoreMatchers.containsString;
+
 /**
  * Created by Serhii Zaitsev on 25.03.2019.
  */
@@ -13,38 +19,28 @@ public class AdsTest extends BaseGUITest {
     @Before
     public void openLoginPage(){
         gp = new GooglePage(getDriver());
+        gsp = new GoogleSearchPage(getDriver());
         gp.openPage();
     }
 
     @Test
     public void Click_On_All_Paid_Links() throws InterruptedException {
-        //gp = new GooglePage(getDriver());
         gp.searchFor("Переоборудование микроавтобусов");
-
-        gsp = new GoogleSearchPage(getDriver());
         gsp.getAndClickOnAll();
-        //gspPage.getAndClickOnAll();
-        // assert
-        /*Assert.assertThat("Login wasn't successful",
-                loginPage.getPageTitle(),
-                containsString("My account"));
-        */
     }
 
     @Test
-    public void Check_VsAvto_Position_OnGoogle_SearchPage() throws InterruptedException {
-        //gp = new GooglePage(getDriver());
+    public void Check_Vsavto_Position_On_Google_SearchPage_By_Bus() throws InterruptedException {
         gp.searchFor("Переоборудование микроавтобусов");
-
-        gsp = new GoogleSearchPage(getDriver());
-        gsp.gettingPagePosNumber();
-        //gspPage.getAndClickOnAll();
-        // assert
-        /*Assert.assertThat("Login wasn't successful",
-                loginPage.getPageTitle(),
-                containsString("My account"));
-        */
+        Assert.assertTrue("Site vsavto wasn't found on first 5 pages", (gsp.gettingPagePosNumber() < 6) );
     }
+
+    @Test
+    public void Check_Vsavto_Position_On_Google_SearchPage_By_Avto() throws InterruptedException {
+        gp.searchFor("Переоборудование авто");
+        Assert.assertTrue("Site vsavto wasn't found on first 5 pages", (gsp.gettingPagePosNumber() < 6) );
+    }
+}
 
    /* @Test
     public void Verify_That_User_Can_Not_Open_Private_Cabinet_Without_Login(){
@@ -66,4 +62,4 @@ public class AdsTest extends BaseGUITest {
                 () -> Assert.assertEquals("Error msg is incorrect","Authentication failed.", loginPage.getErrorMessage())
         );
     }*/
-}
+

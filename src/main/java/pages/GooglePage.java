@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import utils.Conditions;
 
 public class GooglePage extends BasePage {
-    By searchBox = By.name("q");
-    By searchbtn = By.xpath("//input[@name='btnK']");
+    private By searchBox = By.name("q");
+    private By searchbtn = By.xpath("//input[@name='btnK']");
 
 
     public void openPage() {

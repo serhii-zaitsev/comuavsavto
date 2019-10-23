@@ -28,10 +28,8 @@ public class GoogleSearchPage extends BasePage {
         @FindBy(xpath = "//span[text()='Уперед']")
         public WebElement btnNext;
 
-
         @FindAll(@FindBy(how = How.XPATH, using = "//a/span[@class='csb ch']"))
         private List<WebElement> allPages;
-
 
         public void getAndClickOnAll() throws InterruptedException {
             for (int i = 0; i <= allLinks.size()-1; i++ )
@@ -43,14 +41,14 @@ public class GoogleSearchPage extends BasePage {
             }
         }
 
-        public void gettingPagePosNumber() throws InterruptedException {
+        public int gettingPagePosNumber() throws InterruptedException {
             boolean val = true;
             int count = 1;
 
             while(val)
             {
                 Thread.sleep(100);
-                List<WebElement> dynamicElement = driver.findElements(By.partialLinkText("VSavto"));
+                List<WebElement> dynamicElement = driver.findElements(By.partialLinkText("Переоборудование микроавтобусов VSavto"));
                 if(dynamicElement.size() != 0)
                 {
                     //If list size is non-zero, element is present
@@ -61,20 +59,22 @@ public class GoogleSearchPage extends BasePage {
                 else
                 {
                     //Else if size is 0, then element is not present
-                    List<WebElement> ckeckBtnNext = driver.findElements(By.xpath("//span[text()='Уперед']"));
-                    if(ckeckBtnNext.size() != 0)
+                    List<WebElement> checkBtnNext = driver.findElements(By.xpath("//span[text()='Уперед']"));
+                    if(checkBtnNext.size() != 0)
                     {
-                        System.out.println("Site is not presented on " + count + " Page");
+                       // System.out.println("Site is not presented on " + count + " Page");
                         btnNext.click();
                     }
                     else
                     {
-                        System.out.println("There is no site on any pages. It is end");
+                        //System.out.println("There is no site on any pages. It is end");
                         val = false;
+                        count = 12;
                     }
                     count ++;
                 }
             }
+            return count;
         }
     }
 
